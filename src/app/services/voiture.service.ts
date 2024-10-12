@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Voiture } from '../model/voiture.model';
+import { Marque } from '../model/marque.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +8,16 @@ import { Voiture } from '../model/voiture.model';
 export class VoitureService {
 
   voitures : Voiture[]; 
+  marques!:Marque[];
 constructor() { 
+  this.marques=[{idMarque:1,nomMarque:"Renault"},
+    {idMarque:2,nomMarque:"BMW"},
+    {idMarque:3,nomMarque:"Audi"}];
+  
 this.voitures = [ 
-  {idVoiture:1 , nomVoiture:"Renault clio 4 ", prixVoiture:45000.00, dateCreation : new Date("11/02/2016")},
-  {idVoiture : 2,   nomVoiture : "BMW X5",  prixVoiture : 450000, dateCreation : new Date("12/17/2010")}, 
-     {idVoiture : 3,   nomVoiture :"Audi Q5", prixVoiture : 100000, dateCreation : new Date("02/20/2020")}  
+  {idVoiture:1 , nomVoiture:"Renault clio 4 ", prixVoiture:45000.00, dateCreation : new Date("11/02/2016"),marque :{idMarque:1,nomMarque:"Renault"}},
+  {idVoiture : 2,   nomVoiture : "BMW X5",  prixVoiture : 450000, dateCreation : new Date("12/17/2010"),marque:{idMarque:2, nomMarque:"BMW"}}, 
+     {idVoiture : 3,   nomVoiture :"Audi Q5", prixVoiture : 100000, dateCreation : new Date("02/20/2020"),marque:{idMarque:3, nomMarque:"Audi"}}  
 ]; 
 }
 listeVoitures(): Voiture[]{
@@ -29,7 +35,7 @@ supprimerVoiture( v: Voiture){
 }
 voiture!:Voiture;
 consulterVoiture(id:number): Voiture{     
-  this.voiture =  this.voitures.find(p => p.idVoiture == id)!; 
+  this.voiture =  this.voitures.find(v => v.idVoiture == id)!; 
   return this.voiture; 
   } 
   updateVoiture(v:Voiture) 
@@ -50,6 +56,12 @@ consulterVoiture(id:number): Voiture{
     return 0; 
   }); 
   } 
+  listeMarques():Marque[] {
+    return this.marques;
+    }
+    consulterMarque(id:number): Marque{
+      return this.marques.find(marque => marque.idMarque == id)!;
+      }
        
 
 }
