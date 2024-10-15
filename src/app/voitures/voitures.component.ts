@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { Voiture } from '../model/voiture.model';
 import { VoitureService } from '../services/voiture.service';
 
@@ -7,10 +7,21 @@ import { VoitureService } from '../services/voiture.service';
   templateUrl: './voitures.component.html'
   
 })
-export class VoituresComponent {
-  voitures : Voiture[];
+export class VoituresComponent implements OnInit {
+  voitures ?: Voiture[];
   constructor(private voitureService: VoitureService ) { 
-    this.voitures = voitureService.listeVoitures(); 
+    
+}
+ngOnInit(): void {
+
+  this.chargerVoitures();
+}
+
+chargerVoitures(){
+  this.voitureService.listeVoitures().subscribe(prods => {
+    console.log(prods);
+    this.voitures = prods;
+    });
 }
 supprimerVoiture(v: Voiture) 
    { 

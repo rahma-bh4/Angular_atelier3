@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Voiture } from '../model/voiture.model';
 import { Marque } from '../model/marque.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class VoitureService {
 
   voitures : Voiture[]; 
   marques!:Marque[];
+voituresRecherche!:Voiture[];
 constructor() { 
   this.marques=[{idMarque:1,nomMarque:"Renault"},
     {idMarque:2,nomMarque:"BMW"},
@@ -20,8 +22,8 @@ this.voitures = [
      {idVoiture : 3,   nomVoiture :"Audi Q5", prixVoiture : 100000, dateCreation : new Date("02/20/2020"),marque:{idMarque:3, nomMarque:"Audi"}}  
 ]; 
 }
-listeVoitures(): Voiture[]{
-  return this.voitures; 
+listeVoitures(): Observable<Voiture[]> {
+  return of(this.voitures);  // Utilisez 'of' pour transformer le tableau en Observable
 } 
 ajouterVoiture( v: Voiture){ 
   this.voitures.push(v); 
@@ -62,6 +64,17 @@ consulterVoiture(id:number): Voiture{
     consulterMarque(id:number): Marque{
       return this.marques.find(marque => marque.idMarque == id)!;
       }
-       
+
+
+      rechercherParMarque(idMarque: number): Voiture[]{
+        this.voituresRecherche = [];
+        this.voitures.forEach((cur, index) => {
+        if(idMarque == cur.marque.idMarque) {
+        console.log("cur "+cur);
+        this.voituresRecherche.push(cur);
+        }
+        });
+        return this.voituresRecherche;
+      }
 
 }

@@ -7,13 +7,19 @@ import { VoituresComponent } from './voitures/voitures.component';
 import { AddVoitureComponent } from './add-voiture/add-voiture.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateVoitureComponent } from './update-voiture/update-voiture.component';
+import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-par-marque.component';
+import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     VoituresComponent,
     AddVoitureComponent,
-    UpdateVoitureComponent
+    UpdateVoitureComponent,
+    RechercheParMarqueComponent,
+    RechercheParNomComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
