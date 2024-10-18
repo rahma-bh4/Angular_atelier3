@@ -14,7 +14,8 @@ voituresRecherche!:Voiture[];
 constructor() { 
   this.marques=[{idMarque:1,nomMarque:"Renault"},
     {idMarque:2,nomMarque:"BMW"},
-    {idMarque:3,nomMarque:"Audi"}];
+    {idMarque:3,nomMarque:"Audi"},
+    {idMarque:4,nomMarque:"mercedes"}];
   
 this.voitures = [ 
   {idVoiture:1 , nomVoiture:"Renault clio 4 ", prixVoiture:45000.00, dateCreation : new Date("11/02/2016"),marque :{idMarque:1,nomMarque:"Renault"}},
@@ -23,7 +24,7 @@ this.voitures = [
 ]; 
 }
 listeVoitures(): Observable<Voiture[]> {
-  return of(this.voitures);  // Utilisez 'of' pour transformer le tableau en Observable
+  return of(this.voitures);  
 } 
 ajouterVoiture( v: Voiture){ 
   this.voitures.push(v); 
